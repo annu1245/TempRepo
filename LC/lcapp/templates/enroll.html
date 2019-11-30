@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<form method="POST" action="/genlc/">
+		{% csrf_token %}
+Enrollment <input type="text" name="enrollment">
+<input class="btn btn-default" type="submit" name="submit">
+</form>
+</body>
+</html>

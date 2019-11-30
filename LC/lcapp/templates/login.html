@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Add icon library -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
+<style>
+body {font-family: Arial, Helvetica, sans-serif;}
+* {box-sizing: border-box;}
+
+.input-container {
+  display: -ms-flexbox; /* IE10 */
+  display: flex;
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+.icon {
+  padding: 10px;
+  background: dodgerblue;
+  color: white;
+  min-width: 50px;
+  text-align: center;
+}
+
+.input-field {
+  width: 100%;
+  padding: 10px;
+  outline: none;
+}
+
+.input-field:focus {
+  border: 2px solid dodgerblue;
+}
+
+/* Set a style for the submit button */
+.btn {
+  background-color: dodgerblue;
+  color: white;
+  padding: 15px 20px;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  opacity: 0.9;
+}
+
+.btn:hover {
+  opacity: 1;
+}
+</style>
+</head>
+<body>
+
+<form id = "myform" method="POST" action="/loggedin/" style="max-width:500px;margin:auto">
+	{% csrf_token %}
+  <h2>Login Form</h2>
+	
+<br><br>
+  <div class="input-container">
+    <i class="fa fa-envelope icon"></i>
+    <input class="input-field" type="email" placeholder="Email" name="email">
+  </div>
+  
+  <div class="input-container">
+    <i class="fa fa-key icon"></i>
+    <input class="input-field" type="password" placeholder="Password" name="password">
+  </div>
+
+  <button type="submit" class="btn">Login</button>
+
+  <a href="/registrationform/">register here</a>
+</form>
+<script>
+	if ({{ status }} == 1)
+		alert("invalid password")
+</script>
+<!-- <script>
+	
+$('#myform').on('submit', function(e){
+	e.preventDefault()
+	$.ajax({
+		url : "/loggedin/",
+		method : "POST",
+		type : "JSON",
+		headers: { "X-CSRFToken": '{{csrf_token}}' },
+		data : new FormData(this),
+        contentType: false,
+        cache : false,
+        processData:false,
+		success : function(obj){
+			alert(obj)
+			if (obj.status == 1)
+				alert("wrong email or password")	
+				
+			},
+		error : function(obj){
+			alert("error")
+			}
+		})
+	})
+</script> -->
+</body>
+</html>

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<div class="container">
+  <center><h2>Leaving Certificate</h2></center>
+  <form action="/lc/" method="POST">
+  	{% csrf_token %}
+
+	<div class="form-group">
+   	  <label for="genregno">gen-reg-no</label>
+      <input type="number" class="form-control" id="genregno" placeholder="Enter general register no" name="gen-reg-no">
+	</div>
+
+    <div class="form-group">
+      <label for="name">Name:</label>
+      <input type="name" class="form-control" id="name" placeholder="Enter full name" name="name">
+    </div>
+    <div class="row">
+    	<div class="col-md-6">
+    		<div class="form-group">
+      		<label for="cast">Race and Caste</label>
+      		<input type="text" class="form-control" id="cast" placeholder="Enter Race and Cast" name="cast">
+    		</div>
+		</div>
+		<div class="col-md-6">
+			<div class="form-group">
+      		<label for="subcast">Sub-Caste</label>
+      		<input type="text" class="form-control" id="subcast" placeholder="Enter sub cast" name="subcast">
+    		</div>
+		</div>
+	</div>
+
+	<div class="row">
+    	<div class="col-md-6">
+    		<div class="form-group">
+      		<label for="nationality">Nationality</label>
+      		<input type="text" class="form-control" id="nationality" placeholder="Enter nationality" name="nationality">
+    		</div>
+		</div>
+		<div class="col-md-6">
+			<div class="form-group">
+      		<label for="enrollment">Enrollment</label>
+      		<input type="number" class="form-control" id="enrollment" placeholder="Enter enrollment" name="enrollment">
+    		</div>
+		</div>
+	</div>
+
+	<div class="form-group">
+	    <label for="birthplace">Place of birth</label>
+	    <input type="text" class="form-control" id="birthplace" placeholder="Enter place of birth" name="birthplace">
+	</div>
+
+	<div class="form-group">
+	    <label for="dob">Enter date of birth</label>
+	    <input type="date" class="form-control" id="dob" placeholder="Enter date of birth" name="dob">
+	</div>
+
+	<div class="form-group">
+	    <label for="lastschool">Last School/College attended</label>
+	    <input type="text" class="form-control" id="lastschool" placeholder="Enter last school/college name" name="lastschool">
+	</div>
+
+<div class="row">
+    	<div class="col-md-6">
+	<div class="form-group">
+	    <label for="progress">Progress</label>
+	    <input type="text" class="form-control" id="progress" placeholder="Enter progress" name="progress">
+	</div>
+</div>
+		<div class="col-md-6">
+
+	<div class="form-group">
+	    <label for="conduct">Conduct</label>
+	    <input type="text" class="form-control" id="conduct" placeholder="Enter conduct" name="conduct">
+	</div>
+</div>
+</div>
+
+	<div class="form-group">
+	    <label for="dol">Day of leaving institute</label>
+	    <input type="date" class="form-control" id="dob" placeholder="Enter day of leaving institute" name="dol">
+	</div>
+
+	<div class="form-group">
+	    <label for="course">course and year in which studying</label>
+	    <input type="text" class="form-control" id="course" placeholder="Enter course and year in which studying" name="course">
+	</div>
+
+	<div class="form-group">
+	    <label for="reason">reason for leaving institute</label>
+	    <input type="text" class="form-control" id="reason" placeholder="Enter reason for leaving institute" name="reason">
+	</div>
+
+	<div class="form-group">
+	    <label for="remark">Remark</label>
+	    <input type="text" class="form-control" id="remark" placeholder="Enter remark" name="remark">
+	</div>
+
+	<div class="form-group">
+	    <label for="place">place</label>
+	    <input type="text" class="form-control" id="place" placeholder="Enter place" name="place">
+	</div>
+
+	<div class="form-group">
+	    <label for="date">Date</label>
+	    <input type="date" class="form-control" id="date" placeholder="Enter date" name="date">
+	</div>
+
+    <div class="checkbox">
+      <label><input type="checkbox" name="remember"> Remember me</label>
+    </div>
+    <button type="submit" class="btn btn-default">Submit</button>
+  </form>
+</div>
+
+</body>
+</html>
