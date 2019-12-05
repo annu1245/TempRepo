@@ -12,19 +12,20 @@
 
 <div class="container">
 <form id="myForm" method="POST">
+  <ul class="error"></ul>
   {% csrf_token %}
       <h1>registration</h1><br><br>
     <div class="form-group">
        <label for="name">Name:</label>
-      <input type="text" class="form-control" id="name" placeholder="Enter name" name="name">
+      <input type="text" class="form-control" id="name" placeholder="Enter name" name="name" required>
     </div>
       <div class="form-group">
       <label for="email">Email:</label>
-      <input type="email" class="form-control" id="email" placeholder="Enter email" name="email">
+      <input type="email" class="form-control" id="email" placeholder="Enter email" name="email" required>
     </div>
     <div class="form-group">
       <label for="pwd">Password:</label>
-      <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="password">
+      <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="password" required>
     </div>
     <button type="submit" class="btn btn-default">Submit</button><br>
     <a href="/">Login</a>
@@ -55,6 +56,16 @@ $('#myForm').on('submit', function(e){
     }
   })
 })
+
+$('form').on('submit', function(e){
+    $('.error').empty()
+    error = []
+    error[0] = ($('#email').val()=="")?$('.error').append("<li class='alert alert-danger'>Email is required!!</li>"):false
+    error[1] = ($('#pwd').val()=="")?$('.error').append("<li class='alert alert-danger'>Password is required!!</li>"):false
+    if(error[0]||error[1])
+      e.preventDefault()
+    else
+      return true;
 
 </script>
 </body>

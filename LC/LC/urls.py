@@ -19,12 +19,15 @@ from lcapp import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.index),
+    path('', views.login),
     path('registrationform/', views.registrationform),
     path('registered/', views.registered),
     path('loginform/', views.loginform),
     path('loggedin/', views.loggedin),
     path('lc/', views.lc),
     path('genlc/', views.genlc),
+    path('adddata/', views.adddata),
+    path('enroll/', views.enroll),
+    path('show_lc/', views.showLc),
 
 ]

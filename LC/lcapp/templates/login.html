@@ -56,23 +56,26 @@ body {font-family: Arial, Helvetica, sans-serif;}
 .btn:hover {
   opacity: 1;
 }
+
+
 </style>
 </head>
 <body>
-
+  
 <form id = "myform" method="POST" action="/loggedin/" style="max-width:500px;margin:auto">
 	{% csrf_token %}
   <h2>Login Form</h2>
 	
+  <ul class="error"></ul>
 <br><br>
   <div class="input-container">
     <i class="fa fa-envelope icon"></i>
-    <input class="input-field" type="email" placeholder="Email" name="email">
+    <input class="input-field" type="email" placeholder="Email" name="email" id = "email" required>
   </div>
   
   <div class="input-container">
     <i class="fa fa-key icon"></i>
-    <input class="input-field" type="password" placeholder="Password" name="password">
+    <input class="input-field" type="password" placeholder="Password" name="password" id="pwd" required>
   </div>
 
   <button type="submit" class="btn">Login</button>
@@ -80,33 +83,20 @@ body {font-family: Arial, Helvetica, sans-serif;}
   <a href="/registrationform/">register here</a>
 </form>
 <script>
-	if ({{ status }} == 1)
-		alert("invalid password")
+   if ("{{ status }}" == 1){
+     $('.error').append('<li class="alert alert-danger">Login id or password is invalid..</li>')
+   }
+
+  $('form').on('submit', function(e){
+    $('.error').empty()
+    error = []
+    error[0] = ($('#email').val()=="")?$('.error').append("<li class='alert alert-danger'>Email is required!!</li>"):false
+    error[1] = ($('#pwd').val()=="")?$('.error').append("<li class='alert alert-danger'>Password is required!!</li>"):false
+    if(error[0]||error[1])
+      e.preventDefault()
+    else
+      return true;
+  })
 </script>
-<!-- <script>
-	
-$('#myform').on('submit', function(e){
-	e.preventDefault()
-	$.ajax({
-		url : "/loggedin/",
-		method : "POST",
-		type : "JSON",
-		headers: { "X-CSRFToken": '{{csrf_token}}' },
-		data : new FormData(this),
-        contentType: false,
-        cache : false,
-        processData:false,
-		success : function(obj){
-			alert(obj)
-			if (obj.status == 1)
-				alert("wrong email or password")	
-				
-			},
-		error : function(obj){
-			alert("error")
-			}
-		})
-	})
-</script> -->
 </body>
 </html>

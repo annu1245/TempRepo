@@ -7,6 +7,13 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
+<style type="text/css">
+	.l1 {
+		text-decoration: underline;
+	}
+</style>
+
 </head>
 <body>
 
@@ -14,27 +21,26 @@
   <center><h2>Leaving Certificate</h2></center>
   <form action="/lc/" method="POST">
   	{% csrf_token %}
-{% for i in row %}
 	<div class="form-group">
    	  <label for="genregno">gen-reg-no</label>
-   	  <label for="genregno">{{i.gen_reg_no}}</label>
+   	  <label class="l1" for="genregno">{{row.gen_reg_no}}</label>
 	</div>
 
     <div class="form-group">
-      <label for="name">Name:</label>
-      <label for="name">{{i.name}}</label>
+      <label for="name">Name : </label>
+      <label class="l1" for="name">{{row.name}}</label>
     </div>
     <div class="row">
     	<div class="col-md-6">
     		<div class="form-group">
-      		<label for="cast">Race and Caste</label>
-      		<label for="cast">{{i.cast}}</label>
+      		<label for="cast">Race and Caste : </label>
+      		<label class="l1" for="cast">{{row.cast}}</label>
     		</div>
 		</div>
 		<div class="col-md-6">
 			<div class="form-group">
-      		<label for="subcast">Sub-Caste</label>
-      		<label for="subcast">{{i.subcast}}</label>
+      		<label for="subcast">Sub-Caste : </label>
+      		<label class="l1" for="subcast">{{row.subcast}}</label>
     		</div>
 		</div>
 	</div>
@@ -42,79 +48,78 @@
 	<div class="row">
     	<div class="col-md-6">
     		<div class="form-group">
-      		<label for="nationality">Nationality</label>
-      		<label for="nationality">{{i.nationality}}</label>
+      		<label for="nationality">Nationality : </label>
+      		<label class="l1" for="nationality">{{row.nationality}}</label>
     		</div>
 		</div>
 		<div class="col-md-6">
 			<div class="form-group">
-      		<label for="enrollment">Enrollment</label>
-      		<label for="enrollment">{{i.enrollment}}</label>
+      		<label for="enrollment">Enrollment : </label>
+      		<label class="l1" for="enrollment">{{row.enrollment}}</label>
     		</div>
 		</div>
 	</div>
 
 	<div class="form-group">
-	    <label for="birthplace">Place of birth</label>
-	    <label for="birthplace">{{i.birthplace}}</label>
+	    <label for="birthplace">Place of birth : </label>
+	    <label class="l1" for="birthplace">{{row.birthplace}}</label>
 	</div>
 
 	<div class="form-group">
-	    <label for="dob">Enter date of birth</label>
-	    <label for="dob">{{i.dob}}</label>
+	    <label for="dob">Enter date of birth : </label>
+	    <label class="l1" for="dob">{{row.dob}}</label>
 	</div>
 
 	<div class="form-group">
-	    <label for="lastschool">Last School/College attended</label>
-	    <label for="lastschool">{{i.lastschool}}</label>
+	    <label for="lastschool">Last School/College attended : </label>
+	    <label class="l1" for="lastschool">{{row.lastschool}}</label>
 	</div>
 
 <div class="row">
     	<div class="col-md-6">
 	<div class="form-group">
-	    <label for="progress">Progress</label>
-	    <label for="progress">{{i.progress}}</label>
+	    <label for="progress">Progress : </label>
+	    <label class="l1" for="progress">{{row.progress}}</label>
 	</div>
 </div>
 		<div class="col-md-6">
 
 	<div class="form-group">
-	    <label for="conduct">Conduct</label>
-	    <label for="conduct">{{i.conduct}}</label>
+	    <label for="conduct">Conduct : </label>
+	    <label class="l1" for="conduct">{{row.conduct}}</label>
 	</div>
 </div>
 </div>
 
 	<div class="form-group">
-	    <label for="dol">Day of leaving institute</label>
-	    <label for="dol">{{i.dol}}</label>
+	    <label for="dol">Day of leaving institute : </label>
+	    <label class="l1" for="dol">{{row.dol}}</label>
 	</div>
 
 	<div class="form-group">
-	    <label for="course">course and year in which studying</label>
-	    <label for="course">{{i.course}}</label>
+	    <label for="course">course and year in which studying : </label>
+	    <label class="l1" for="course">{{row.course}}</label>
 	</div>
 
 	<div class="form-group">
-	    <label for="reason">reason for leaving institute</label>
-	    <label for="reason">{{i.reason}}</label>
+	    <label for="reason">reason for leaving institute : </label>
+	    <label class="l1" for="reason">{{row.reason}}</label>
 	</div>
 
 	<div class="form-group">
-	    <label for="remark">Remark</label>
-	    <label for="remark">{{i.remark}}</label>
+	    <label for="remark">Remark : </label>
+	    <label class="l1" for="remark">{{row.remark}}</label>
 	</div>
 
 	<div class="form-group">
-	    <label for="place">place</label>
-	    <label for="place">{{i.place}}</label>
+	    <label for="place">place : </label>
+	    <label class="l1" for="place">{{row.place}}</label>
 	</div>
 
 	<div class="form-group">
-	    <label for="date">Date</label>
-	    <label for="date">{{i.date}}</label>
+	    <label for="date">Date : </label>
+	    <label class="l1" for="date">{{row.date}}</label>
 	</div>
-{% endfor %}
     <button type="submit" class="btn btn-default">Submit</button>
   </form>
 </div>

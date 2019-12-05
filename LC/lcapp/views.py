@@ -1,13 +1,12 @@
 from django.shortcuts import render,redirect
 from .models import User,Students
-from django.http import HttpResponse
 from django.http import JsonResponse
 
 
 
 # Create your views here.
 
-def index(request):
+def login(request):
 	return render(request, 'login.html')
 
 def registrationform(request):
@@ -30,37 +29,72 @@ def loginform(request):
 def loggedin(request):
 	obj = User.objects.filter(email = request.POST['email'])
 	if obj:
+
 		if obj[0].password == request.POST['password']:
 			return render(request, 'enroll.html')
 		else:
 			return render(request, 'login.html', {'status': 1})
 	else:
-		return redirect('/loginform/')
+		return redirect(request, 'login.html', {'status' : 1})
+
+# def userLogin(request):
+# 	try:
+# 		user = User.objects.get(email=request.POST["email"])
+# 		matched = check_password(request.POST["password"],user.password)
+# 		print(matched)
+# 		if matched:
+# 			return redirect("/dashboard")
+# 		else:
+# 			return render(request, "login.html", {'state':1})
+
+# 	except:
+# 		return render(request, "login.html", {'state':1})
 
 def lc(request):
-	student = Students()
-	student.gen_reg_no = request.POST['gen-reg-no']
-	student.name = request.POST['name']
-	student.cast = request.POST['cast']
-	student.subcast = request.POST['subcast']
-	student.nationality = request.POST['nationality']
-	student.enrollment = request.POST['enrollment']
-	student.birthplace = request.POST['birthplace']
-	student.dob = request.POST['dob']
-	student.lastschool = request.POST['lastschool']
-	student.progress = request.POST['progress']
-	student.conduct = request.POST['conduct']
-	student.dol = request.POST['dol']
-	student.course = request.POST['course']
-	student.reason = request.POST['reason']
-	student.remark = request.POST['remark']
-	student.place = request.POST['place']
-	student.date = request.POST['date']
-	student.save()
 	obj = Students.objects.filter(enrollment = request.POST['enrollment'])
-	return render(request, 'lc.html', {'row':obj})
+	if not obj:
+		student = Students()
+		student.gen_reg_no = request.POST['gen-reg-no']
+		student.name = request.POST['name']
+		student.cast = request.POST['cast']
+		student.subcast = request.POST['subcast']
+		student.nationality = request.POST['nationality']
+		student.enrollment = request.POST['enrollment']
+		student.birthplace = request.POST['birthplace']
+		student.dob = request.POST['dob']
+		student.lastschool = request.POST['lastschool']
+		student.progress = request.POST['progress']
+		student.conduct = request.POST['conduct']
+		student.dol = request.POST['dol']
+		student.course = request.POST['course']
+		student.reason = request.POST['reason']
+		student.remark = request.POST['remark']
+		student.place = request.POST['place']
+		student.date = request.POST['date']
+		last_student = Students.objects.all().order_by('-id').first()
+		if last_student:
+			student.serial_no = int(last_student.serial_no) + 1
+		else:
+			student.serial_no = 1
+		student.save()
+	else:
+		return JsonResponse({'state': 1})
+	return JsonResponse({'state': 0})
 
 
 def genlc(request):
 	student = Students.objects.filter(enrollment = request.POST['enrollment'])
-	return render(request, 'lc.html', {'row' : student})
+	if student:
+		return render(request, 'lc.html', {'row' : student[0]})
+	else:
+		return render(request, 'enroll.html', {'state': 1})
+
+def adddata(request):
+	return render(request, 'index.html')
+
+def enroll(request):
+	return render(request, 'enroll.html')
+
+def showLc(request):
+	last_student = Students.objects.all().order_by('-id').first()
+	return render(request, 'lc.html', {'row' : last_student})

@@ -25,3 +25,4 @@ class Students(models.Model):
 	remark = models.CharField(max_length = 100)
 	place = models.CharField(max_length = 100)
 	date = models.CharField(max_length = 100)
+	serial_no = models.TextField(blank = True)
