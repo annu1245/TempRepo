@@ -28,6 +28,11 @@ urlpatterns = [
     path('genlc/', views.genlc),
     path('adddata/', views.adddata),
     path('enroll/', views.enroll),
+    path('view_update/', views.showUpdate),
     path('show_lc/', views.showLc),
+    path('view_delete/', views.showDelete),
+    path('delete/', views.delete),
+    path('update/', views.update),
+    path('home/', views.home),
 
 ]

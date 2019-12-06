@@ -12,11 +12,26 @@
 	.l1 {
 		text-decoration: underline;
 	}
+	@media print {
+	  body * {
+	    visibility: hidden;
+	  }
+	  #printarea * {
+	    visibility: visible;
+	  }
+	  #printarea {
+	    position: absolute;
+	    left: 0;
+	    top: 0;
+	  }
+	}
 </style>
 
 </head>
 <body>
+	  {% include "home.html" %}
 
+<div id="printarea">
 <div class="container">
   <center><h2>Leaving Certificate</h2></center>
   <form action="/lc/" method="POST">
@@ -120,9 +135,20 @@
 	    <label for="date">Date : </label>
 	    <label class="l1" for="date">{{row.date}}</label>
 	</div>
-    <button type="submit" class="btn btn-default">Submit</button>
   </form>
 </div>
+</div>
+    <button type="submit" class="btn btn-success">Submit</button>
+    <button type="submit" class="btn btn-danger bt">Print/button>
+
+<script type="text/javascript">
+	
+	$('.bt').on('click', function(e){
+		// window.print();
+		$('#printarea').printThis()
+	})
+
+</script>
 
 </body>
 </html>

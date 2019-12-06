@@ -35,20 +35,8 @@ def loggedin(request):
 		else:
 			return render(request, 'login.html', {'status': 1})
 	else:
-		return redirect(request, 'login.html', {'status' : 1})
+		return render(request, 'login.html', {'status' : 1})
 
-# def userLogin(request):
-# 	try:
-# 		user = User.objects.get(email=request.POST["email"])
-# 		matched = check_password(request.POST["password"],user.password)
-# 		print(matched)
-# 		if matched:
-# 			return redirect("/dashboard")
-# 		else:
-# 			return render(request, "login.html", {'state':1})
-
-# 	except:
-# 		return render(request, "login.html", {'state':1})
 
 def lc(request):
 	obj = Students.objects.filter(enrollment = request.POST['enrollment'])
@@ -93,8 +81,35 @@ def adddata(request):
 	return render(request, 'index.html')
 
 def enroll(request):
-	return render(request, 'enroll.html')
+	return render(request, 'enroll.html', {'link': '/genlc/', 'btn_name': 'Show LC'})
+
+
+
+def showUpdate(request):
+	return render(request, 'enroll.html', {'link': '/update/', 'btn_name': 'Update LC'})
+
+def showDelete(request):
+	return render(request, 'enroll.html', {'link': '/delete/', 'btn_name': 'Delete LC'})
 
 def showLc(request):
 	last_student = Students.objects.all().order_by('-id').first()
 	return render(request, 'lc.html', {'row' : last_student})
+
+def update(request):
+	student = Students.objects.filter(enrollment = request.POST['enrollment'])
+	if student:
+		return render(request, 'update.html', {'row' : student[0]})
+	else:
+		return render(request, 'enroll.html', {'status' : 1})
+
+
+def delete(request):
+	student = Students.objects.filter(enrollment = request.POST['enrollment'])
+	if student:
+		student[0].delete()
+		return render(request, 'enroll.html', {'link': '/delete/', 'btn_name': 'Delete LC', 'state': 5})
+	else:
+		return render(request, 'enroll.html', {'link': '/delete/', 'btn_name': 'Delete LC', 'state': 1})
+
+def home(request):
+	return render(request, 'home.html')
