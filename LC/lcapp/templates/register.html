@@ -171,6 +171,18 @@
 <script>
 $('#myForm').on('submit', function(e){
   e.preventDefault()
+
+
+    $('.error').empty()
+    error = []
+    error[0] = ($('#email').val()=="")?$('.error').append("<li class='alert alert-danger'>Email is required!!</li>"):false
+    error[1] = ($('#pwd').val()=="")?$('.error').append("<li class='alert alert-danger'>Password is required!!</li>"):false
+    if(error[0]||error[1])
+      e.preventDefault()
+    else{
+      
+
+
   $.ajax({
     url : "/registered/",
     method : 'POST',
@@ -184,26 +196,15 @@ $('#myForm').on('submit', function(e){
     if(obj.status == 1)
         alert("email already exist")
     else{
-        window.location.href="/"
+        window.location.href = "/"
       }
     },
     error : function(obj){
       alert("error")
-
     }
   })
+}
 })
-
-$('form').on('submit', function(e){
-    $('.error').empty()
-    error = []
-    error[0] = ($('#email').val()=="")?$('.error').append("<li class='alert alert-danger'>Email is required!!</li>"):false
-    error[1] = ($('#pwd').val()=="")?$('.error').append("<li class='alert alert-danger'>Password is required!!</li>"):false
-    if(error[0]||error[1])
-      e.preventDefault()
-    else
-      return true;
-
 </script>
 </body>
 </html>

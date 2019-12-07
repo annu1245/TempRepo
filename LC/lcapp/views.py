@@ -21,6 +21,7 @@ def registered(request):
 	user.email = request.POST['email']
 	user.password = request.POST['password']
 	user.save()
+	request.session['userEmail'] = request.POST['email']
 	return JsonResponse({'status':0})
 
 def loginform(request):
@@ -29,13 +30,19 @@ def loginform(request):
 def loggedin(request):
 	obj = User.objects.filter(email = request.POST['email'])
 	if obj:
-
 		if obj[0].password == request.POST['password']:
+			request.session['userEmail'] = request.POST['email']
 			return redirect("/home/")
 		else:
 			return render(request, 'login.html', {'status': 1})
 	else:
 		return render(request, 'login.html', {'status' : 1})
+
+
+
+def logOut(request):
+	del request.session['userEmail']
+	return redirect('/')
 
 
 def lc(request):
@@ -78,7 +85,10 @@ def genlc(request):
 		return render(request, 'enroll.html', {'state': 1})
 
 def adddata(request):
-	return render(request, 'index.html')
+	if 'userEmail' in request.session:
+		return render(request, 'index.html')
+	else:
+		return redirect('/')
 
 def enroll(request):
 	return render(request, 'enroll.html', {'link': '/genlc/', 'btn_name': 'Show LC'})
@@ -86,21 +96,54 @@ def enroll(request):
 
 
 def showUpdate(request):
-	return render(request, 'enroll.html', {'link': '/update/', 'btn_name': 'Update LC'})
+	if 'userEmail' in request.session:
+		return render(request, 'enroll.html', {'link': '/update_page/', 'btn_name': 'Update LC'})
+	else:
+		return redirect('/')
 
 def showDelete(request):
-	return render(request, 'enroll.html', {'link': '/delete/', 'btn_name': 'Delete LC'})
+	if 'userEmail' in request.session:
+		return render(request, 'enroll.html', {'link': '/delete/', 'btn_name': 'Delete LC'})
+	else:
+		return redirect('/')
 
 def showLc(request):
-	last_student = Students.objects.all().order_by('-id').first()
-	return render(request, 'lc.html', {'row' : last_student})
+	if 'userEmail' in request.session:
+		last_student = Students.objects.all().order_by('-id').first()
+		return render(request, 'lc.html', {'row' : last_student})
+	else:
+		return redirect('/')
 
-def update(request):
+def updatePage(request):
 	student = Students.objects.filter(enrollment = request.POST['enrollment'])
 	if student:
-		return render(request, 'update.html', {'row' : student[0]})
+		return render(request, 'update.html', {'row': student[0]})
 	else:
-		return render(request, 'enroll.html', {'status' : 1})
+		return redirect('/view_update/')
+
+
+def update(request):
+	student = Students.objects.get(enrollment = request.POST['enrollment'])
+	student.gen_reg_no = request.POST['gen-reg-no']
+	student.name = request.POST['name']
+	student.cast = request.POST['cast']
+	student.subcast = request.POST['subcast']
+	student.nationality = request.POST['nationality']
+	student.enrollment = request.POST['enrollment']
+	student.birthplace = request.POST['birthplace']
+	student.dob = request.POST['dob']
+	student.lastschool = request.POST['lastschool']
+	student.progress = request.POST['progress']
+	student.conduct = request.POST['conduct']
+	student.dol = request.POST['dol']
+	student.course = request.POST['course']
+	student.reason = request.POST['reason']
+	student.remark = request.POST['remark']
+	student.place = request.POST['place']
+	student.date = request.POST['date']
+	student.save()
+	student = Students.objects.get(enrollment = request.POST['enrollment'])
+	return render(request, 'lc.html', {'row' : student})
 
 
 def delete(request):
@@ -112,4 +155,7 @@ def delete(request):
 		return render(request, 'enroll.html', {'link': '/delete/', 'btn_name': 'Delete LC', 'state': 1})
 
 def home(request):
-	return render(request, 'home.html')
+	if 'userEmail' in request.session:
+		return render(request, 'home.html')
+	else:
+		return redirect('/')
