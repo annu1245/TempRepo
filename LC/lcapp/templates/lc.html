@@ -29,10 +29,10 @@
 
 </head>
 <body>
-	  {% include "home.html" %}
+	  {% include "layouts/sidebar.html" %}
 
 <div id="printarea">
-<div class="container">
+<div class="container" style="margin: 20%; margin-top: 2%;">
   <center><h2>Leaving Certificate</h2></center>
   <form action="/lc/" method="POST">
   	{% csrf_token %}

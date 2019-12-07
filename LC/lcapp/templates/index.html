@@ -9,8 +9,8 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 </head>
 <body>
-
-<div class="container">
+{% include "layouts/sidebar.html" %}
+<div class="container" style="margin: 20%; margin-top: 2%;">
   <center><h2>Leaving Certificate</h2></center>
   <form>
   	{% csrf_token %}
@@ -151,6 +151,6 @@
 	})
 </script>
 
-
+{% include 'layouts/footer.html' %}
 </body>
 </html>

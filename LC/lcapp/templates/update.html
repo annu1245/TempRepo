@@ -9,9 +9,9 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 </head>
 <body>
-  {% include "home.html" %}
+  {% include "layouts/sidebar.html" %}
 
-<div class="container">
+<div class="container" style="margin: 20%; margin-top: 2%;">
   <center><h2>Leaving Certificate</h2></center>
   <form method="POST" action="/lc/">
   	{% csrf_token %}

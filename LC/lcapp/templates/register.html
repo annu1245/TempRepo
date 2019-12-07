@@ -1,35 +1,172 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  {% load static %}
   <title>Bootstrap Example</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  <style type="text/css">
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: sans-serif;
+        background: url({% static '/img/bg.jpg' %});
+        background-size: cover;
+    }
+
+        nav a:link {
+          color: yellow;
+        }
+        nav a:visited {
+          color: yellow;
+        }
+        nav a:hover {
+          color: hotpink;
+        }
+        nav a:active {
+          color: blue;
+        }
+
+
+        .box a:link {
+          font-size:18px;
+          color: #010c15f7;
+        }
+        
+        .box a:visited {
+          color: #4f00fff0;
+        }
+        .box a:hover {
+          color:#060606f7;
+        }
+        .box a:active {
+          color:#520536f7;
+        }
+
+    .box {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 500px;
+        padding: 40px;
+        background: #ffffff;
+        box-sizing: border-box;
+        box-shadow: 0 15px 25px rgba(0,0,0,.5);
+        border-radius: 10px;
+        font-color:red;
+
+    }
+    #loading_icon {
+        position: absolute;       
+        top: 50%;
+        left: 50%;
+        transform: translate(-30terma%, -50%);
+        width: 400px;
+    }
+
+    h1{
+      color: #29497dd6;
+            text-shadow: 2px 2px #3722a88a;
+            text-align: center;
+            font-size: 36px;
+            margin-top: 4px;
+    }
+
+    .box .inputBox {
+        position: relative;
+    }
+
+    .box .inputBox input {
+        width: 100%;
+        padding: 10px 0;
+        font-size: 16px;
+        color: #fff;
+        margin-bottom: 30px;
+        border: none;
+        border-bottom: 1px solid #02131df2;
+        outline: none;
+        background: transparent;
+    }
+
+    .box .inputBox label {
+        position: absolute;
+        top: 0;
+        left: 0;
+        padding: 10px 0;
+        font-size: 16px;
+        color: #2f95a7;
+        pointer-events: none;
+        transition: .5s; 
+    }
+
+    .box .inputBox input:focus ~ label,
+    .box .inputBox input:valid ~ label {
+        top: -20px;
+        left: 0;
+        color: #03a9f4;
+        font-size: 12px;
+    }
+
+    .box input[type="submit"] {
+        background: transparent;
+        border: none;
+        outline: none;
+        color: #fff;
+        background: #03a9f4;
+        padding: 10px 20px;
+        cursor: pointer;
+        border-radius: 5px;
+        font-size:18px;
+    }
+
+    .box .in input {
+      font-size: 20px;
+      color:black;
+    }
+    hr {
+       /*display: block;
+        margin-top: 0.5em;
+        margin-bottom: 0.5em;
+        margin-left: 480px;
+        margin-right: 480px;
+        border-style: inset;*/
+        /*border-width: 3px;*/
+        width: 50%;
+        border: 1px solid black;
+      }
+  </style>
 </head>
 <body>
 
 <div class="container">
+  <div class="box">
 <form id="myForm" method="POST">
   <ul class="error"></ul>
   {% csrf_token %}
-      <h1>registration</h1><br><br>
-    <div class="form-group">
+      <h1>registration</h1>
+      <hr>
+
+      <div class="inputBox in">
+      <input type="text" id="name" name="name" required>
        <label for="name">Name:</label>
-      <input type="text" class="form-control" id="name" placeholder="Enter name" name="name" required>
     </div>
-      <div class="form-group">
+      <div class="inputBox in">
+      <input type="email" id="email" name="email" required>
       <label for="email">Email:</label>
-      <input type="email" class="form-control" id="email" placeholder="Enter email" name="email" required>
     </div>
-    <div class="form-group">
+      <div class="inputBox in">
+      <input type="password" id="pwd" name="password" required>
       <label for="pwd">Password:</label>
-      <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="password" required>
     </div>
-    <button type="submit" class="btn btn-default">Submit</button><br>
+
+    <input type="submit" class="btn btn-default" value="Submit"><br>
     <a href="/">Login</a>
   </form>
+</div>
 </div>
 <script>
 $('#myForm').on('submit', function(e){

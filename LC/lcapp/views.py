@@ -31,7 +31,7 @@ def loggedin(request):
 	if obj:
 
 		if obj[0].password == request.POST['password']:
-			return render(request, 'enroll.html')
+			return redirect("/home/")
 		else:
 			return render(request, 'login.html', {'status': 1})
 	else:
