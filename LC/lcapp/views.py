@@ -120,7 +120,7 @@ def updatePage(request):
 		return render(request, 'update.html', {'row': student[0]})
 	else:
 		return redirect('/view_update/')
-
+print("Hii")
 
 def update(request):
 	student = Students.objects.get(enrollment = request.POST['enrollment'])
