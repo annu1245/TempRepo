@@ -78,12 +78,8 @@ WSGI_APPLICATION = 'LC.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'lcgpt',
-        'HOST' : 'localhost',
-        'PASSWORD' : '1234',
-        'USER' : 'root',
-        'PORT': '3306'
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
 
